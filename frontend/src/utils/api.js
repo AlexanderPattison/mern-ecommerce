@@ -4,6 +4,13 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({ baseURL });
 
+const getAuthToken = () => {
+    if (typeof window !== 'undefined') {
+        return localStorage.getItem('token');
+    }
+    return null;
+};
+
 export const getProducts = async () => {
     try {
         const response = await api.get('/products');
@@ -25,8 +32,11 @@ export const getProduct = async (id) => {
 };
 
 export const createOrder = async (orderData) => {
+    const token = getAuthToken();
     try {
-        const response = await api.post('/orders', orderData);
+        const response = await api.post('/orders', orderData, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         return response.data;
     } catch (error) {
         console.error('Error creating order:', error);
@@ -35,8 +45,11 @@ export const createOrder = async (orderData) => {
 };
 
 export const getUserOrders = async () => {
+    const token = getAuthToken();
     try {
-        const response = await api.get('/orders/myorders');
+        const response = await api.get('/orders/myorders', {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching user orders:', error);
@@ -45,8 +58,11 @@ export const getUserOrders = async () => {
 };
 
 export const getOrderById = async (id) => {
+    const token = getAuthToken();
     try {
-        const response = await api.get(`/orders/${id}`);
+        const response = await api.get(`/orders/${id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching order:', error);

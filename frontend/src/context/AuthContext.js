@@ -29,21 +29,16 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         try {
             const { data } = await axios.post('http://localhost:5000/api/users/login', { email, password });
-
-            // Adjust this part to match the backend response structure
             const userData = {
                 _id: data._id,
                 name: data.name,
                 email: data.email,
                 isAdmin: data.isAdmin
             };
-
             setUser(userData);
             setToken(data.token);
-
             localStorage.setItem('user', JSON.stringify(userData));
             localStorage.setItem('token', data.token);
-
             router.push('/');
         } catch (error) {
             console.error('Login error:', error.response?.data?.message || error.message);
@@ -73,8 +68,21 @@ export function AuthProvider({ children }) {
         router.push('/login');
     };
 
+    const updateUser = async (userData) => {
+        try {
+            const { data } = await axios.put('http://localhost:5000/api/users/profile', userData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setUser(data);
+            localStorage.setItem('user', JSON.stringify(data));
+        } catch (error) {
+            console.error('Update user error:', error.response?.data?.message || error.message);
+            throw error;
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, token, login, register, logout }}>
+        <AuthContext.Provider value={{ user, token, login, register, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
     );

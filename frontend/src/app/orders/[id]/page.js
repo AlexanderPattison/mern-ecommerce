@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Layout from '../../../components/Layout';
 import { getOrderById } from '../../../utils/api';
+import Image from 'next/image';
 
 export default function OrderDetails() {
     const { id } = useParams();
@@ -26,12 +26,12 @@ export default function OrderDetails() {
         fetchOrder();
     }, [id]);
 
-    if (loading) return <Layout><div className="text-gray-800">Loading...</div></Layout>;
-    if (error) return <Layout><div className="text-red-600">{error}</div></Layout>;
-    if (!order) return <Layout><div className="text-gray-800">Order not found</div></Layout>;
+    if (loading) return <div className="text-center text-gray-800">Loading...</div>;
+    if (error) return <div className="text-center text-red-600">{error}</div>;
+    if (!order) return <div className="text-center text-gray-800">Order not found</div>;
 
     return (
-        <Layout>
+        <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-4 text-gray-800">Order Details</h1>
             <div className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                 <h2 className="text-xl font-semibold mb-2 text-gray-800">Order #{order._id}</h2>
@@ -47,12 +47,18 @@ export default function OrderDetails() {
                 <h3 className="text-lg font-semibold mt-4 mb-2 text-gray-800">Order Items</h3>
                 <ul>
                     {order.orderItems.map((item) => (
-                        <li key={item._id} className="mb-2 text-gray-600">
-                            {item.name} - Quantity: {item.quantity} - ${item.price.toFixed(2)} each
+                        <li key={item._id} className="flex items-center justify-between mb-2 text-gray-600">
+                            <div className="flex items-center">
+                                <Image src={item.image} alt={item.name} width={50} height={50} className="object-cover mr-4" />
+                                <span>{item.name}</span>
+                            </div>
+                            <span>
+                                {item.quantity} x ${item.price.toFixed(2)} = ${(item.quantity * item.price).toFixed(2)}
+                            </span>
                         </li>
                     ))}
                 </ul>
             </div>
-        </Layout>
+        </div>
     );
 }

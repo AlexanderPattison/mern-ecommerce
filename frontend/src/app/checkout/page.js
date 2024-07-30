@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { createOrder } from '../../utils/api';
@@ -62,7 +61,7 @@ export default function Checkout() {
     };
 
     return (
-        <Layout>
+        <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-4 text-gray-800">Checkout</h1>
             <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-2 text-gray-800">Shipping Address</h2>
@@ -145,6 +144,6 @@ export default function Checkout() {
                     Place Order
                 </button>
             </form>
-        </Layout>
+        </div>
     );
 }
