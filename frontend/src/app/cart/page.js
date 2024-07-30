@@ -1,3 +1,5 @@
+// src/app/cart/page.js
+
 'use client';
 
 import { useCart } from '../../context/CartContext';
@@ -17,9 +19,9 @@ export default function Cart() {
             ) : (
                 <div className="bg-white shadow-md rounded-lg p-6">
                     {cart.map((item) => (
-                        <div key={item._id} className="flex items-center justify-between border-b py-2">
+                        <div key={item._id} className="flex items-center justify-between border-b py-4">
                             <div className="flex items-center">
-                                <Image src={item.image} alt={item.name} width={64} height={64} className="object-cover mr-4" />
+                                <Image src={item.image} alt={item.name} width={80} height={80} className="object-cover mr-4" />
                                 <div>
                                     <h2 className="text-lg font-semibold text-gray-800">{item.name}</h2>
                                     <p className="text-gray-600">${item.price.toFixed(2)} each</p>
@@ -28,16 +30,16 @@ export default function Cart() {
                             <div className="flex items-center">
                                 <button
                                     onClick={() => updateQuantity(item._id, item.quantity - 1)}
-                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-l"
+                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-l hover:bg-gray-300"
                                 >
                                     -
                                 </button>
-                                <span className="bg-gray-100 text-gray-800 px-3 py-1">
+                                <span className="bg-gray-100 text-gray-800 px-4 py-1">
                                     {item.quantity}
                                 </span>
                                 <button
                                     onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-r"
+                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-r hover:bg-gray-300"
                                 >
                                     +
                                 </button>
@@ -50,13 +52,16 @@ export default function Cart() {
                             </div>
                         </div>
                     ))}
-                    <div className="mt-4">
+                    <div className="mt-6">
                         <h2 className="text-xl font-semibold text-gray-800">Total: ${total.toFixed(2)}</h2>
-                        <div className="mt-4">
-                            <Link href="/checkout" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-4">
+                        <div className="mt-4 flex justify-between">
+                            <Link href="/checkout" className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-200">
                                 Proceed to Checkout
                             </Link>
-                            <button onClick={clearCart} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                            <button
+                                onClick={clearCart}
+                                className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 transition duration-200"
+                            >
                                 Clear Cart
                             </button>
                         </div>

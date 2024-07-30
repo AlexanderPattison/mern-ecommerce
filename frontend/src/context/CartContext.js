@@ -1,3 +1,5 @@
+// src/context/CartContext.js
+
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
@@ -38,13 +40,15 @@ export function CartProvider({ children }) {
         showNotification('Item removed from cart');
     };
 
-    const updateQuantity = (productId, quantity) => {
+    const updateQuantity = (productId, newQuantity) => {
+        if (newQuantity < 1) {
+            removeFromCart(productId);
+            return;
+        }
         setCart((prevCart) =>
             prevCart.map((item) =>
-                item._id === productId
-                    ? { ...item, quantity: Math.max(0, quantity) }
-                    : item
-            ).filter((item) => item.quantity > 0)
+                item._id === productId ? { ...item, quantity: newQuantity } : item
+            )
         );
         showNotification('Cart updated');
     };
