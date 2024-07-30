@@ -1,46 +1,65 @@
 import axios from 'axios';
 
-const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
-});
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
-api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => Promise.reject(error)
-);
+const api = axios.create({ baseURL });
 
 export const getProducts = async () => {
-    const response = await api.get('/products');
-    return response.data;
+    try {
+        const response = await api.get('/products');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw error;
+    }
 };
 
 export const getProduct = async (id) => {
-    const response = await api.get(`/products/${id}`);
-    return response.data;
+    try {
+        const response = await api.get(`/products/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        throw error;
+    }
 };
 
 export const createOrder = async (orderData) => {
-    const response = await api.post('/orders', orderData);
-    return response.data;
+    try {
+        const response = await api.post('/orders', orderData);
+        return response.data;
+    } catch (error) {
+        console.error('Error creating order:', error);
+        throw error;
+    }
 };
 
 export const getUserOrders = async () => {
-    const response = await api.get('/orders/myorders');
-    return response.data;
+    try {
+        const response = await api.get('/orders/myorders');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user orders:', error);
+        throw error;
+    }
 };
 
 export const getOrderById = async (id) => {
-    const response = await api.get(`/orders/${id}`);
-    return response.data;
+    try {
+        const response = await api.get(`/orders/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching order:', error);
+        throw error;
+    }
 };
 
 export const searchProducts = async (query) => {
-    const response = await api.get(`/products/search?q=${encodeURIComponent(query)}`);
-    return response.data;
+    try {
+        const response = await api.get(`/products/search?q=${encodeURIComponent(query)}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching products:', error);
+        throw error;
+    }
 };

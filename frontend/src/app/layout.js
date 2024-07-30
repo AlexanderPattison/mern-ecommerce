@@ -1,6 +1,9 @@
-﻿import './globals.css';
-import { CartProvider } from '../context/CartContext';
+﻿'use client';
+
+import './globals.css';
 import { AuthProvider } from '../context/AuthContext';
+import { CartProvider } from '../context/CartContext';
+import Layout from '../components/Layout';
 
 export default function RootLayout({ children }) {
     return (
@@ -8,7 +11,7 @@ export default function RootLayout({ children }) {
             <body>
                 <AuthProvider>
                     <CartProvider>
-                        {children}
+                        <Layout>{children}</Layout>
                     </CartProvider>
                 </AuthProvider>
             </body>

@@ -1,4 +1,6 @@
-﻿import Link from 'next/link';
+﻿'use client';
+
+import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import SearchBar from './SearchBar';
 import MiniCart from './MiniCart';
