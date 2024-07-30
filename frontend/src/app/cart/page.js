@@ -1,8 +1,8 @@
 'use client';
 
-import Layout from '../../components/Layout';
 import { useCart } from '../../context/CartContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Cart() {
     const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -10,7 +10,7 @@ export default function Cart() {
     const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
-        <Layout>
+        <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-4 text-gray-800">Your Cart</h1>
             {cart.length === 0 ? (
                 <p className="text-gray-600">Your cart is empty. <Link href="/products" className="text-blue-500 hover:underline">Continue shopping</Link></p>
@@ -19,7 +19,7 @@ export default function Cart() {
                     {cart.map((item) => (
                         <div key={item._id} className="flex items-center justify-between border-b py-2">
                             <div className="flex items-center">
-                                <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
+                                <Image src={item.image} alt={item.name} width={64} height={64} className="object-cover mr-4" />
                                 <div>
                                     <h2 className="text-lg font-semibold text-gray-800">{item.name}</h2>
                                     <p className="text-gray-600">${item.price.toFixed(2)} each</p>
@@ -63,6 +63,6 @@ export default function Cart() {
                     </div>
                 </div>
             )}
-        </Layout>
+        </div>
     );
 }
