@@ -35,25 +35,30 @@ export function CartProvider({ children }) {
 
     const removeFromCart = (productId) => {
         setCart((prevCart) => prevCart.filter((item) => item._id !== productId));
+        showNotification('Item removed from cart');
     };
 
     const updateQuantity = (productId, quantity) => {
         setCart((prevCart) =>
             prevCart.map((item) =>
-                item._id === productId ? { ...item, quantity: Math.max(0, quantity) } : item
+                item._id === productId
+                    ? { ...item, quantity: Math.max(0, quantity) }
+                    : item
             ).filter((item) => item.quantity > 0)
         );
+        showNotification('Cart updated');
     };
 
     const clearCart = () => {
         setCart([]);
+        showNotification('Cart cleared');
     };
 
     const showNotification = (message) => {
         setNotification({ visible: true, message });
         setTimeout(() => {
             setNotification({ visible: false, message: '' });
-        }, 3000); // Hide after 3 seconds
+        }, 3000);
     };
 
     return (

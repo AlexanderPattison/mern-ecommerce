@@ -28,14 +28,16 @@ export default function Cart() {
                             <div className="flex items-center">
                                 <button
                                     onClick={() => updateQuantity(item._id, item.quantity - 1)}
-                                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded"
+                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-l"
                                 >
                                     -
                                 </button>
-                                <span className="mx-2 text-gray-800">{item.quantity}</span>
+                                <span className="bg-gray-100 text-gray-800 px-3 py-1">
+                                    {item.quantity}
+                                </span>
                                 <button
                                     onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded"
+                                    className="bg-gray-200 text-gray-800 px-3 py-1 rounded-r"
                                 >
                                     +
                                 </button>

@@ -1,6 +1,7 @@
 ﻿import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import SearchBar from './SearchBar';
+import MiniCart from './MiniCart';
 
 export default function Layout({ children }) {
     const { user, logout } = useAuth();
@@ -16,10 +17,10 @@ export default function Layout({ children }) {
                         <SearchBar />
                     </div>
                     <nav>
-                        <ul className="flex space-x-4">
+                        <ul className="flex space-x-4 items-center">
                             <li><Link href="/" className="hover:text-gray-300">Home</Link></li>
                             <li><Link href="/products" className="hover:text-gray-300">Products</Link></li>
-                            <li><Link href="/cart" className="hover:text-gray-300">Cart</Link></li>
+                            <li><MiniCart /></li>
                             {user ? (
                                 <>
                                     <li><Link href="/profile" className="hover:text-gray-300">Profile</Link></li>
