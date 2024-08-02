@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
+const Activity = require('../models/Activity');
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/', protect, async (req, res) => {
@@ -20,6 +21,16 @@ router.post('/', protect, async (req, res) => {
         });
 
         const createdOrder = await order.save();
+
+        // Log activity
+        const newActivity = new Activity({
+            type: 'ORDER',
+            description: `New order created with ID: ${createdOrder._id}`,
+            user: req.user._id,
+            order: createdOrder._id
+        });
+        await newActivity.save();
+
         res.status(201).json(createdOrder);
     } catch (error) {
         if (error.name === 'ValidationError') {

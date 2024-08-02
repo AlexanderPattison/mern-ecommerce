@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
                 _id: data._id,
                 name: data.name,
                 email: data.email,
-                isAdmin: data.isAdmin
+                isAdmin: data.isAdmin // Include isAdmin status
             };
             setUser(userData);
             setToken(data.token);

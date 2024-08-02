@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Activity = require('../models/Activity');
 const jwt = require('jsonwebtoken');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -21,6 +22,14 @@ router.post('/register', async (req, res) => {
     });
 
     if (user) {
+        // Log activity
+        const newActivity = new Activity({
+            type: 'USER',
+            description: `New user registered: ${user.name}`,
+            user: user._id
+        });
+        await newActivity.save();
+
         res.status(201).json({
             _id: user._id,
             name: user.name,

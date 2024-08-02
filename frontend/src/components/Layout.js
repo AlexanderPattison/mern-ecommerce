@@ -26,6 +26,9 @@ export default function Layout({ children }) {
                             {user ? (
                                 <>
                                     <li><Link href="/profile" className="hover:text-gray-300">Profile</Link></li>
+                                    {user.isAdmin && (
+                                        <li><Link href="/admin" className="hover:text-gray-300">Admin Dashboard</Link></li>
+                                    )}
                                     <li><button onClick={logout} className="hover:text-gray-300">Logout</button></li>
                                 </>
                             ) : (
