@@ -20,21 +20,21 @@ export default function Layout({ children }) {
                     </div>
                     <nav>
                         <ul className="flex space-x-4 items-center">
-                            <li><Link href="/" className="hover:text-gray-300">Home</Link></li>
-                            <li><Link href="/products" className="hover:text-gray-300">Products</Link></li>
+                            <li><Link href="/" className="text-white hover:text-gray-200">Home</Link></li>
+                            <li><Link href="/products" className="text-white hover:text-gray-200">Products</Link></li>
                             <li><MiniCart /></li>
                             {user ? (
                                 <>
-                                    <li><Link href="/profile" className="hover:text-gray-300">Profile</Link></li>
+                                    <li><Link href="/profile" className="text-white hover:text-gray-200">Profile</Link></li>
                                     {user.isAdmin && (
-                                        <li><Link href="/admin" className="hover:text-gray-300">Admin Dashboard</Link></li>
+                                        <li><Link href="/admin" className="text-white hover:text-gray-200">Admin Dashboard</Link></li>
                                     )}
-                                    <li><button onClick={logout} className="hover:text-gray-300">Logout</button></li>
+                                    <li><button onClick={logout} className="text-white hover:text-gray-200">Logout</button></li>
                                 </>
                             ) : (
                                 <>
-                                    <li><Link href="/login" className="hover:text-gray-300">Login</Link></li>
-                                    <li><Link href="/register" className="hover:text-gray-300">Register</Link></li>
+                                    <li><Link href="/login" className="text-white hover:text-gray-200">Login</Link></li>
+                                    <li><Link href="/register" className="text-white hover:text-gray-200">Register</Link></li>
                                 </>
                             )}
                         </ul>

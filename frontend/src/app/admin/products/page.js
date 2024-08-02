@@ -130,10 +130,10 @@ export default function AdminProducts() {
                                     }}
                                 />
                             </th>
-                            <th className="px-4 py-2 cursor-pointer text-gray-800" onClick={() => handleSort('name')}>Name</th>
-                            <th className="px-4 py-2 cursor-pointer text-gray-800" onClick={() => handleSort('price')}>Price</th>
-                            <th className="px-4 py-2 cursor-pointer text-gray-800" onClick={() => handleSort('category')}>Category</th>
-                            <th className="px-4 py-2 cursor-pointer text-gray-800" onClick={() => handleSort('countInStock')}>In Stock</th>
+                            <th className="px-4 py-2 cursor-pointer text-gray-800 hover:text-gray-600" onClick={() => handleSort('name')}>Name</th>
+                            <th className="px-4 py-2 cursor-pointer text-gray-800 hover:text-gray-600" onClick={() => handleSort('price')}>Price</th>
+                            <th className="px-4 py-2 cursor-pointer text-gray-800 hover:text-gray-600" onClick={() => handleSort('category')}>Category</th>
+                            <th className="px-4 py-2 cursor-pointer text-gray-800 hover:text-gray-600" onClick={() => handleSort('countInStock')}>In Stock</th>
                             <th className="px-4 py-2 text-gray-800">Actions</th>
                         </tr>
                     </thead>
@@ -204,7 +204,7 @@ function ProductForm({ product, onSubmit, onCancel }) {
     return (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
             <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-                <h3 className="text-lg font-semibold mb-4">Edit Product</h3>
+                <h3 className="text-lg font-semibold mb-4 text-gray-800">Edit Product</h3>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -212,7 +212,7 @@ function ProductForm({ product, onSubmit, onCancel }) {
                         value={formData.name || ''}
                         onChange={handleChange}
                         placeholder="Product Name"
-                        className="w-full p-2 mb-2 border rounded"
+                        className="w-full p-2 mb-2 border rounded text-gray-800"
                     />
                     <input
                         type="number"
@@ -220,7 +220,7 @@ function ProductForm({ product, onSubmit, onCancel }) {
                         value={formData.price || ''}
                         onChange={handleChange}
                         placeholder="Price"
-                        className="w-full p-2 mb-2 border rounded"
+                        className="w-full p-2 mb-2 border rounded text-gray-800"
                     />
                     <input
                         type="text"
@@ -228,7 +228,7 @@ function ProductForm({ product, onSubmit, onCancel }) {
                         value={formData.category || ''}
                         onChange={handleChange}
                         placeholder="Category"
-                        className="w-full p-2 mb-2 border rounded"
+                        className="w-full p-2 mb-2 border rounded text-gray-800"
                     />
                     <input
                         type="number"
@@ -236,7 +236,7 @@ function ProductForm({ product, onSubmit, onCancel }) {
                         value={formData.countInStock || ''}
                         onChange={handleChange}
                         placeholder="Count in Stock"
-                        className="w-full p-2 mb-2 border rounded"
+                        className="w-full p-2 mb-2 border rounded text-gray-800"
                     />
                     <div className="flex justify-end">
                         <button type="button" onClick={onCancel} className="px-4 py-2 bg-gray-300 text-gray-800 rounded mr-2">Cancel</button>

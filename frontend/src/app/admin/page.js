@@ -73,29 +73,30 @@ export default function AdminDashboard() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatCard icon={<FaBox />} title="Total Products" value={stats.products || 'N/A'} color="bg-blue-500" />
-                <StatCard icon={<FaShoppingCart />} title="Total Orders" value={stats.orders || 'N/A'} color="bg-green-500" />
-                <StatCard icon={<FaUsers />} title="Total Users" value={stats.users || 'N/A'} color="bg-yellow-500" />
+                <StatCard icon={<FaBox />} title="Total Products" value={stats.products || 'N/A'} color="bg-blue-500" textColor="text-white" />
+                <StatCard icon={<FaShoppingCart />} title="Total Orders" value={stats.orders || 'N/A'} color="bg-green-500" textColor="text-white" />
+                <StatCard icon={<FaUsers />} title="Total Users" value={stats.users || 'N/A'} color="bg-yellow-500" textColor="text-gray-800" />
                 <StatCard
                     icon={<FaDollarSign />}
                     title="Total Revenue"
                     value={stats.revenue ? `$${stats.revenue.toFixed(2)}` : '$0.00'}
                     color="bg-purple-500"
+                    textColor="text-white"
                 />
             </div>
 
             {/* Sales Chart */}
             <div className="bg-white p-6 rounded-lg shadow mb-8">
-                <h2 className="text-xl font-semibold mb-4">Sales Over Time</h2>
+                <h2 className="text-xl font-semibold mb-4 text-gray-800">Sales Over Time</h2>
                 <Line data={chartData} />
             </div>
 
             {/* Recent Activity */}
             <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+                <h2 className="text-xl font-semibold mb-4 text-gray-800">Recent Activity</h2>
                 <ul>
                     {recentActivity.map((activity, index) => (
-                        <li key={index} className="mb-2">
+                        <li key={index} className="mb-2 text-gray-700">
                             {activity.type}: {activity.description} - {new Date(activity.date).toLocaleString()}
                         </li>
                     ))}
@@ -105,9 +106,9 @@ export default function AdminDashboard() {
     );
 }
 
-function StatCard({ icon, title, value, color }) {
+function StatCard({ icon, title, value, color, textColor }) {
     return (
-        <div className={`${color} rounded-lg shadow-lg p-6 text-white`}>
+        <div className={`${color} rounded-lg shadow-lg p-6 ${textColor}`}>
             <div className="flex items-center justify-between">
                 <div className="text-3xl">{icon}</div>
                 <div className="text-4xl font-bold">{value}</div>
