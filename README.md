@@ -67,6 +67,20 @@ This is a full-stack e-commerce platform built with Next.js for the frontend and
   ```
 6. Open `http://localhost:3000` in your browser to view the application.
 
+### Seeding the Database
+
+To populate the database with initial data, follow these steps:
+
+1. Ensure your MongoDB connection is set up correctly in the .env file.
+2. Navigate to the backend directory:
+  ``` bash
+  cd backend
+  ```
+3. Run the seed script:
+  ``` bash
+  node seedDatabase.js
+  ```
+
 ## API Configuration
 
 The frontend is configured to communicate with the backend API. If you need to modify the API URL, you can update it in the `frontend/src/utils/api.js` file.
